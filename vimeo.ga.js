@@ -1,5 +1,6 @@
 /*!
- * vimeo.ga.js | v0.3
+ * vimeo.ga.js | v0.3-universal
+ * Patched for analytics.js (instead of ga.js) which is going to be standard going forward for GA.
  * Copyright (c) 2014 Sander Heilbron (http://www.sanderheilbron.nl)
  * MIT licensed
  */
@@ -30,7 +31,7 @@ $(function() {
 
     // Handle messages received from the player
     function onMessageReceived(e) {
-        if (e.origin.replace('https:', 'http:') !== "http://player.vimeo.com" || typeof _gaq === 'undefined') {
+        if (e.origin.replace('https:', 'http:') !== "http://player.vimeo.com" || typeof ga === 'undefined') {
          return;
         }
         var data = JSON.parse(e.data);
@@ -46,14 +47,14 @@ $(function() {
 
         case 'seek':
             if (trackSeeking && !videoSeeking) {
-                _gaq.push(['_trackEvent', 'Vimeo', 'Skipped video forward or backward', url, undefined, true]);
+                ga('send', 'event', 'Vimeo', 'Skipped video forward or backward', url, undefined, {'nonInteraction': 1});
                 videoSeeking = true; // Avoid subsequent seek trackings
             }
             break;
 
         case 'play':
             if (!videoPlayed) {
-                _gaq.push(['_trackEvent', 'Vimeo', 'Started video', url, undefined, true]);
+                ga('send', 'event', 'Vimeo', 'Started video', url, undefined, {'nonInteraction': 1});
                 videoPlayed = true; //  Avoid subsequent play trackings
             }
             break;
@@ -64,7 +65,7 @@ $(function() {
 
         case 'finish':
             if (!videoCompleted) {
-                _gaq.push(['_trackEvent', 'Vimeo', 'Completed video', url, undefined, true]);
+                ga('send', 'event', 'Vimeo', 'Completed video', url, undefined, {'nonInteraction': 1});
                 videoCompleted = true; // Avoid subsequent finish trackings
             }
             break;
@@ -101,7 +102,7 @@ $(function() {
 
     function onPause() {
      if (timePercentComplete < 99 && !videoPaused) {
-      _gaq.push(['_trackEvent', 'Vimeo', 'Paused video', url, undefined, true]);
+      ga('send', 'event', 'Vimeo', 'Paused video', url, undefined, {'nonInteraction': 1});
       videoPaused = true; // Avoid subsequent pause trackings
       }
      }
@@ -132,8 +133,7 @@ $(function() {
         }
 
         if (progress) {
-            _gaq.push(['_trackEvent', 'Vimeo', progress, url, undefined, true]);
+            ga('send', 'event', 'Vimeo', progress, url, undefined, {'nonInteraction': 1});
         }
     }
-
 });
