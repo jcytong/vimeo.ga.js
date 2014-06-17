@@ -41,9 +41,9 @@ All player events are only tracked once. Restarting the video will not reset the
 
 #####Example
 ```js
-_gaq.push(['_trackEvent', 'Vimeo', 'Started video', 'http://player.vimeo.com/video/22439234', undefined, true]);
-_gaq.push(['_trackEvent', 'Vimeo', 'Paused video', 'http://player.vimeo.com/video/22439234', undefined, true]);
-_gaq.push(['_trackEvent', 'Vimeo', 'Completed video', 'http://player.vimeo.com/video/22439234', undefined, true]);
+ga('send', 'event', 'Vimeo', 'Started video', 'http://player.vimeo.com/video/22439234', undefined, {'nonInteraction': 1}]);
+ga('send', 'event', 'Vimeo', 'Paused video', 'http://player.vimeo.com/video/22439234', undefined, {'nonInteraction': 1}]);
+ga('send', 'event', 'Vimeo', 'Completed video', 'http://player.vimeo.com/video/22439234', undefined, {'nonInteraction': 1}]);
 ```
 ### Progress event trackers
 
@@ -56,9 +56,9 @@ _gaq.push(['_trackEvent', 'Vimeo', 'Completed video', 'http://player.vimeo.com/v
 
 #####Example
 ```js
-_gaq.push(['_trackEvent', 'Vimeo', 'Played video: 25%', 'http://player.vimeo.com/video/22439234', undefined, true]);
-_gaq.push(['_trackEvent', 'Vimeo', 'Played video: 50%', 'http://player.vimeo.com/video/22439234', undefined, true]);
-_gaq.push(['_trackEvent', 'Vimeo', 'Played video: 75%', 'http://player.vimeo.com/video/22439234', undefined, true]);
+ga('send', 'event', 'Vimeo', 'Played video: 25%', 'http://player.vimeo.com/video/22439234', undefined, {'nonInteraction': 1}]);
+ga('send', 'event', 'Vimeo', 'Played video: 50%', 'http://player.vimeo.com/video/22439234', undefined, {'nonInteraction': 1}]);
+ga('send', 'event', 'Vimeo', 'Played video: 75%', 'http://player.vimeo.com/video/22439234', undefined, {'nonInteraction': 1}]);
 ```
 ### Seek event tracker
 * Category: Vimeo
@@ -68,7 +68,7 @@ _gaq.push(['_trackEvent', 'Vimeo', 'Played video: 75%', 'http://player.vimeo.com
 
 #####Example
 ```js
-_gaq.push(['_trackEvent', 'Vimeo', 'Skipped video forward or backward', 'http://player.vimeo.com/video/22439234', undefined, true]);
+ga('send', 'event', 'Vimeo', 'Skipped video forward or backward', 'http://player.vimeo.com/video/22439234', undefined, {'nonInteraction': 1}]);
 ```
 
 ### Bounce rate
